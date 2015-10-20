@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .container
+    h1 Signup Page
+    p.lead Say something worthwhile here.
+    br
+    form(role='form', action="/signup",method="post", style='max-width: 300px;')
+      .form-group
+          input.form-control(type='text', name="username", placeholder='Enter Username')
+      .form-group
+        input.form-control(type='password', name="password", placeholder='Password')
+      .form-group
+        input.form-control(type='email', name="email", placeholder='Email')
+      .form-group
+        input.form-control(type='text', name="phone", placeholder='Phone')
+      .form-group
+        input.form-control(type='radio', name="usertype", value="CUSTOMER" placeholder="CUSTOMER") 
+       .form-group
+        input.form-control(type='radio', name="usertype", value="SUPPLIER" placeholder="SUPPLIER")
+       .form-group
+        input.form-control(type='radio', name="usertype", value="TRANSLATOR", placeholder="TRANSLATOR")
+      button.btn.btn-default(type='submit') Submit
+      &nbsp;
+      a(href='/')
+      &nbsp;
+      button.btn.btn-primary(type="button") Cancel
+    br
+    h4= info

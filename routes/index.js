@@ -3,7 +3,6 @@ var passport = require('passport');
 var models = require('../models/schema');
 var User = models.User;
 var Language = models.Language;
-var USER_TYPE = models.USER_TYPE;
 var router = express.Router();
 
 

@@ -1,11 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
-
-var USER_TYPE = ["CUSTOMER", "SUPPLIER", "TRANSLATOR"];
-var OPERATION_TYPE = ["CUSTOMER", "SUPPLIER", "TRANSLATOR"];
-var DURATION_TYPE = ["One hour", "More than one Hour", "Other"];
-var BOOKING_STATUS = ["REQUESTED", "ACCEPTED", "CANCELLED", "DONE"];
+var mongoosePaginate = require('mongoose-paginate');
+var metaData = require('./meta');
 
 var Language = new Schema({
 	lang: String,
@@ -20,7 +17,7 @@ var User = new Schema({
 	phone: String,
 	usertype: {
 		type: String,
-		enum: USER_TYPE
+		enum: metaData.USER_TYPE.values()
 	},
 	languages: [String],
 	active: {
@@ -46,15 +43,15 @@ var Booking = new Schema({
 		booking_time_offset: String,
 		operation_type: {
 			type: String,
-			enum: OPERATION_TYPE
+			enum: metaData.OPERATION_TYPE.values()
 		},
 		duration_type: {
 			type: String,
-			enum: DURATION_TYPE
+			enum: metaData.DURATION_TYPE.values()
 		},
 		status: {
 			type: String,
-			enum: BOOKING_STATUS
+			enum: metaData.DURATION_TYPE.values()
 		},
 		translator: {
 			type: Schema.Types.ObjectId,
@@ -72,7 +69,9 @@ var Booking = new Schema({
 //authentication plugin
 User.plugin(passportLocalMongoose);
 
+//pagination plugin
+Booking.plugin(mongoosePaginate);
+
 exports.User = mongoose.model('users', User);
 exports.Language = mongoose.model("languages", Language);
 exports.Booking = mongoose.model("bookings", Booking);
-exports.USER_TYPE = USER_TYPE;

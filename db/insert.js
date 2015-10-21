@@ -1,3 +1,4 @@
+//default langauages
 db.languages.insert({lang:'Arabiska', active:true});
 db.languages.insert({lang:'Dari', active:true});
 db.languages.insert({lang:'Farsi', active:true});

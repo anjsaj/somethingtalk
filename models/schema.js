@@ -12,6 +12,7 @@ var Language = new Schema({
 	active: Boolean,
 });
 
+//User schema
 var User = new Schema({
 	username: String,
 	password: String,
@@ -21,9 +22,19 @@ var User = new Schema({
 		type: String,
 		enum: USER_TYPE
 	},
-	languages: [String]
+	languages: [String],
+	active: {
+		type: Boolean,
+		default: true
+	}
+}, {
+	timestamps: {
+		createdAt: 'created_at',
+		updatedAt: 'updated_at'
+	}
 });
 
+//Booking schema
 var Booking = new Schema({
 		customer: {
 			type: Schema.Types.ObjectId,

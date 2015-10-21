@@ -71,21 +71,32 @@ router.post('/', function(req, res, next) {
 				return next(err);
 			}
 
-			/*
-			Booking.paginate({
-				whereC: req.user,
-				status: {
-					$in: [metaData.BOOKING_STATUS.REQUESTED, metaData.BOOKING_STATUS.ACCEPTED]
-				}
-			}, {
-				page: req.query.page,
-				limit: req.query.limit,
-			}, function(err, bookings) {
+			try{
+			var booking = new Booking({
+				customer: user._id,
+				from_lang: req.body.fromlang,
+				to_lang: req.body.tolang,
+				//booking_time: req.body.bookingyime,
+				booking_time: new Date,
+				booking_time_offset: req.body.bookingoffset,
+				operation_type: req.body.operationtype,
+				duration_type: req.body.durationtype,
+				status: metaData.BOOKING_STATUS.REQUESTED,
+				translator: user._id
+			});
+
+			booking.save(function(err, result) {
 				if (err) {
 					return next(err);
 				}
-				res.json(bookings);
-			}); */
+
+				res.json('successfully saved');
+
+			});
+			}catch(err){
+				console.log(err);
+				res.json('error');
+			}
 		});
 	} else {
 		res.json("unauthorize access");

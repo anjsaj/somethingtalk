@@ -35,7 +35,7 @@ var User = new Schema({
 var Booking = new Schema({
 		customer: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: 'users'
 		},
 		from_lang: String,
 		to_lang: String,
@@ -51,11 +51,11 @@ var Booking = new Schema({
 		},
 		status: {
 			type: String,
-			enum: metaData.DURATION_TYPE.values()
+			enum: metaData.BOOKING_STATUS.values()
 		},
 		translator: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: 'users'
 		}
 	}, {
 		timestamps: {

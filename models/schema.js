@@ -45,15 +45,15 @@ var Booking = new Schema({
 		booking_time: Date,
 		booking_time_offset: String,
 		operation_type: {
-			type: String
+			type: String,
 			enum: OPERATION_TYPE
 		},
 		duration_type: {
-			type: String
+			type: String,
 			enum: DURATION_TYPE
 		},
 		status: {
-			type: String
+			type: String,
 			enum: BOOKING_STATUS
 		},
 		translator: {

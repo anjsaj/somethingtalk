@@ -18,18 +18,20 @@ var OPERATION_TYPE = {
 var DURATION_TYPE = {
 	ONEHOUR: "ONEHOUR",
 	MORETHANONEHOUR: "MORETHANONEHOUR",
+	URGENT: "URGENT", //within 20 mins
 	values: function() {
-		return ["ONEHOUR", "MORETHANONEHOUR"];
+		return ["ONEHOUR", "MORETHANONEHOUR", "URGENT"];
 	}
 };
 
 var BOOKING_STATUS = {
 	REQUESTED: "REQUESTED",
-	ACCEPTED: "ACCEPTED",
-	CANCELLED: "CANCELLED",
-	DONE: "DONE",
+	ACCEPTED: "ACCEPTED", 
+	CANCELLED: "CANCELLED", //booking cancelled my customer
+	CANCELLED_ACCEPTANCE: "CANCELLED_ACCEPTANCE", //confirmation cancelled by translator
+	DONE: "DONE", //Meeting done by customer or translator
 	values: function() {
-		return ["REQUESTED", "ACCEPTED", "CANCELLED", "DONE"];
+		return ["REQUESTED", "ACCEPTED", "CANCELLED", "DONE", "CANCELLED_ACCEPTANCE"];
 	}
 };
 
